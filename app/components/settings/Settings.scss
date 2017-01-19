@@ -1,0 +1,22 @@
+@import "../../assets/scss/settings/colors";
+
+.settings {
+    &__label {
+        padding: 8px 0 8px 8px;
+        border-left: 2px solid $c-primary;
+    }
+
+    &__avatar {
+        float: right;
+        margin-top: 12px;
+    }
+
+    &__link {
+        color: $c-primary;
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}

@@ -1,0 +1,51 @@
+/**
+ * PAGE
+ * base/page.scss
+ */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-family: $f-primary;
+    color: $c-text;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+
+    min-height: 100%;
+    overflow-x: hidden;
+}
+
+body {
+    background-color: #fff;
+    color: $c-text;
+
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    overflow-y: hidden;
+
+    position: relative;
+
+    -webkit-app-region: drag;
+}
+
+a,
+button,
+input,
+select,
+textarea,
+.no-drag {
+    -webkit-app-region: no-drag;
+}
+
+#root {
+    height: 100%;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}

@@ -1,0 +1,93 @@
+.dashboard {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    &__content {
+        flex: 1;
+
+        overflow: scroll;
+
+        & > table {
+            width: 100%;
+            border-collapse: collapse;
+
+            tr:hover > td {
+                background-color: #eee;
+
+                cursor: pointer;
+            }
+
+            th {
+                background-color: #161f28;
+                color: #ccc;
+                text-align: left;
+                font-weight: 400;
+
+                padding: 10px 5px 5px;
+            }
+
+            td {
+                background-color: #fff;
+                color: #333;
+
+                padding: 5px;
+                border-bottom: 1px solid #ddd;
+            }
+
+            tr.dashboard__content__sep td {
+                background-color: #f8f8f8;
+                font-size: 11px;
+                text-transform: uppercase;
+                color: #aaa;
+
+                padding: 10px 6px 4px;
+            }
+
+            tr.is-active td {
+                background-color: #243342;
+                color: #D7DADB;
+            }
+        }
+
+        &__truncated {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+
+            margin: 0;
+            width: 380px;
+        }
+
+        &__refresh {
+            color: #ccc;
+
+            &:hover {
+                color: #fff;
+
+                transition: color .3s;
+            }
+
+            &:active > i {
+                transition: all .1s;
+                transform: rotate(90deg);
+            }
+        }
+
+        &__sep {
+            & > td:last-of-type {
+                text-align: right;
+
+                & > a {
+                    color: #333;
+
+                    margin-left: 10px;
+                }
+            }
+        }
+    }
+
+    &__stats-recap {
+        flex: 0 0 100px;
+    }
+}

@@ -1,0 +1,126 @@
+/**
+ * PAGE
+ * component/page.scss
+ */
+
+.page {
+    background-color: #fff;
+    color: #000;
+
+    padding: 20px;
+
+    &__close {
+        font-size: 20px;
+        text-decoration: none;
+        color: #000;
+
+        position: absolute;
+        top: -40px;
+        right: 0;
+    }
+
+    &__header {
+        position: relative;
+    }
+
+    &__title {
+        font-weight: 400;
+
+        margin: 47px 0 20px;
+    }
+
+    &__subtitle {
+        font-weight: 700;
+        text-transform: uppercase;
+        font-size: 14px;
+
+        margin: 0 0 15px;
+    }
+
+    &__search {
+        width: 300px;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 100px;
+
+        position: absolute;
+        top: 2px;
+        right: 0;
+
+        &:focus {
+            border-color: #000;
+
+            outline: 0;
+        }
+    }
+
+    &__items {
+        margin: 10px 0 30px;
+        padding: 0;
+
+        list-style-type: none;
+    }
+
+    &__item {
+        &__link {
+            color: $c-text;
+            text-decoration: none;
+
+            padding: 15px 0;
+            display: block;
+            border-bottom: 1px solid $c-neutral;
+
+            &:hover {
+                color: $c-primary;
+
+                border-bottom-color: $c-primary;
+            }
+
+            &--with-icon {
+                display: inline-block;
+                width: calc(100% - 40px);
+            }
+
+            &__desc {
+                font-size: 90%;
+
+                display: inline-block;
+                margin-left: 10px;
+
+                opacity: .85;
+            }
+        }
+
+        &__link-icon {
+            text-align: right;
+            color: $c-primary;
+
+            display: inline-block;
+            width: 40px;
+            margin-top: 16px;
+            vertical-align: top;
+
+            &:hover {
+                color: $c-secondary;
+            }
+        }
+    }
+
+    &__sep {
+        background: $c-neutral;
+
+        display: block;
+        width: 100%;
+        height: 1px;
+        margin: 20px 0;
+        border: 0;
+    }
+
+    &__notfound {
+        text-align: center;
+        font-style: italic;
+        color: #666;
+
+        padding: 40px 0;
+    }
+}

@@ -1,0 +1,58 @@
+/**
+ * LAYOUT
+ * component/layout.scss
+ */
+
+.container {
+    padding: 20px;
+}
+
+.layout {
+    display: flex;
+    width: 100%;
+    height: 100%;
+
+    &__aside {
+        color: #d7dadb;
+        background: $c-primary--dark; /* Old browsers */
+        background: -moz-linear-gradient(left, $c-primary--dark 93%, #243342 100%); /* FF3.6-15 */
+        background: -webkit-linear-gradient(left, $c-primary--dark 93%, #243342 100%); /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(to right, $c-primary--dark 93%, #243342 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#2c3e50", endColorstr="#243342", GradientType=1); /* IE6-9 */
+
+        display: flex;
+        flex-direction: column;
+        flex: 0 0 300px;
+    }
+
+    &__content {
+        color: #000;
+        background-color: #fff;
+
+        overflow: scroll;
+
+        flex: 1;
+    }
+}
+
+.row {
+    margin-bottom: 1em;
+}
+
+.col {
+    vertical-align: top;
+
+    display: inline-block;
+
+    &--middle {
+        vertical-align: middle;
+    }
+
+    &--1-3 {
+        width: 33.33%;
+    }
+
+    &--2-3 {
+        width: 66.66%;
+    }
+}

@@ -1,0 +1,107 @@
+.timer {
+    &__clock {
+        text-align: center;
+        font-weight: 700;
+
+        display: flex;
+        align-items: center;
+        padding: 0 20px;
+        height: 180px;
+
+        &__time {
+            font-size: 60px;
+
+            flex: 1;
+
+            &__seconds {
+                font-size: 30px;
+            }
+        }
+
+        &__buttons {
+            font-size: 40px;
+
+            display: flex;
+            flex-direction: column;
+            padding: 0;
+
+            & > i:not(:first-of-type) {
+                margin-top: 10px;
+            }
+        }
+    }
+
+    &__datas {
+
+    }
+
+    &__data {
+        text-decoration: none;
+        color: #d7dadb;;
+
+        display: block;
+        padding: 15px;
+
+        &:not(.timer__data--no-highlight):hover {
+            background-color: #546c83;
+        }
+
+        &__title {
+            font-weight: 100;
+            text-transform: uppercase;
+            font-size: 11px;
+            letter-spacing: .1em;
+
+            margin: 0 0 5px;
+        }
+
+        &__label {
+            margin: 0;
+            border-bottom: 1px solid rgba(255, 255, 255, .25);
+            padding-bottom: 5px;
+        }
+
+        &__date {
+            background-color: transparent;
+
+            width: 100%;
+            margin: 0;
+            border: 0;
+            border-bottom: 1px solid rgba(255, 255, 255, .25);
+            padding: 5px 0;
+
+            &:active,
+            &:focus {
+                color: #fff;
+
+                border-bottom-color: #fff;
+                outline: none;
+            }
+        }
+
+        &__textarea {
+            background-color: transparent;
+
+            width: 100%;
+            max-height: 50px;
+            border: 0;
+            border-bottom: 1px solid rgba(255, 255, 255, .25);
+            padding: 0 0 5px;
+
+            resize: none;
+
+            &:active,
+            &:focus {
+                color: #fff;
+
+                border-bottom-color: #fff;
+                outline: none;
+            }
+
+            &::selection {
+                background-color: #fff;
+                color: black;
+            }
+        }
+    }
+}

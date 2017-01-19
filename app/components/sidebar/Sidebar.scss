@@ -1,0 +1,20 @@
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    &__timer {
+        flex: 1;
+        overflow: scroll;
+    }
+
+    &__options {
+        background-color: #161f28;
+
+        padding: 10px 20px;
+
+        & a {
+            color: #aaa;
+        }
+    }
+}
