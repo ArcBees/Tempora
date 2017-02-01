@@ -55,7 +55,7 @@ export function getProject(projectId) {
 }
 
 export function getIssues(projectId) {
-    let searchQuery = "/search?jql=project=" + projectId;
+    let searchQuery = "/search?jql=project=" + projectId + "&maxResults=1000";
     return Http.get(StorageService.getInstanceURL() + URL + searchQuery, Http.buildOptions()).then(response => response.json());
 }
 
