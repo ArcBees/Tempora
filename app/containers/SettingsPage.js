@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import Settings from '../components/settings/Settings';
 
 export default class SettingsPage extends Component {

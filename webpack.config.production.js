@@ -3,14 +3,11 @@
  */
 
 import webpack from 'webpack';
-import validate from 'webpack-validator';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import merge from 'webpack-merge';
 import baseConfig from './webpack.config.base';
 
-const config = validate(merge(baseConfig, {
-    debug: true,
-
+const config = merge(baseConfig, {
     devtool: 'cheap-module-source-map',
 
     entry: [
@@ -23,28 +20,27 @@ const config = validate(merge(baseConfig, {
     },
 
     module: {
-        loaders: [
+        rules: [
             // Extract all .global.css to style.css as is
             {
                 test: /\.global\.css$/,
-                loader: ExtractTextPlugin.extract(
-                    'style-loader',
-                    'css-loader'
-                )
+                loader: ExtractTextPlugin.extract({ fallback: 'style-loader', use: 'css-loader' })
             },
 
             // Pipe other styles through css modules and apend to style.css
             {
                 test: /^((?!\.global).)*\.css$/,
                 loader: ExtractTextPlugin.extract(
-                    'style-loader',
-                    'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]'
+                    {
+                        fallback: 'style-loader',
+                        use: 'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]'
+                    }
                 )
             },
 
             {
                 test: /\.scss$/,
-                loaders: ["style", "css", "sass"]
+                use: ['style-loader', 'css-loader', 'sass-loader']
             }
         ]
     },
@@ -68,11 +64,11 @@ const config = validate(merge(baseConfig, {
         }),
 
         // Set the ExtractTextPlugin output filename
-        new ExtractTextPlugin('style.css', {allChunks: true})
+        new ExtractTextPlugin({ filename: 'style.css', allChunks: true })
     ],
 
     // https://github.com/chentsulin/webpack-target-electron-renderer#how-this-module-works
     target: 'electron-renderer'
-}));
+});
 
 export default config;

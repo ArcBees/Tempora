@@ -3,7 +3,6 @@ import 'moment-duration-format';
 
 import * as TempoApi from './apis/TempoApi';
 import * as DateUtils from '../utils/DateUtils';
-import { Worklog } from './apis/TempoApi';
 
 export function createWorklog(worklog): Promise<any> {
     return TempoApi.createWorklog(worklog);
@@ -17,11 +16,11 @@ export function deleteWorklog(worklogId): Promise<any> {
     return TempoApi.deleteWorklog(worklogId);
 }
 
-export function getLatestWorklogs(): Promise<Worklog[]> {
+export function getLatestWorklogs(): Promise<TempoApi.Worklog[]> {
     return TempoApi.getWorklogs(getTwoWeeksAgo(), getToday());
 }
 
-export function getTodayWorklogs(): Promise<Worklog[]> {
+export function getTodayWorklogs(): Promise<TempoApi.Worklog[]> {
     return TempoApi.getWorklogs(getToday(), getToday());
 }
 
@@ -59,7 +58,7 @@ export function getLastWeekTotalTime() {
 function calculateTotalTime(worklogs) {
     let totalTime = 0;
 
-    worklogs.map((entry: Worklog) => (
+    worklogs.map((entry: TempoApi.Worklog) => (
         totalTime += entry.timeSpentSeconds
     ));
 

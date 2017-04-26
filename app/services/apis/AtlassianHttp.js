@@ -6,22 +6,22 @@ export const API_TYPE = 'rest';
 
 // TODO: Use Request-Promise library instead to return a legit Promise
 export function requestMethod(method, url, body): Promise<any> {
-    var options = {
-        method: method,
-        url: url,
+    const options = {
+        method,
+        url,
         headers: {
             'cache-control': 'no-cache',
-            'origin': StorageService.getInstanceURL(),
-            'authorization': `Basic ${StorageService.getApiKey()}`,
+            origin: StorageService.getInstanceURL(),
+            authorization: `Basic ${StorageService.getApiKey()}`,
             'x-atlassian-token': 'nocheck',
-            'accept': 'application/json',
+            accept: 'application/json',
             'content-type': 'application/json'
         },
-        body: body,
+        body,
         json: true
     };
 
-    request(options, function (error, response, body) {
+    request(options, (error, response, body) => {
         if (error) throw new Error(error);
 
         console.log(body);
@@ -46,14 +46,14 @@ export function buildOptions() {
 }
 
 export function buildHeadersWithApiKey(apiKey) {
-    let headers = {
-        'Authorization': `Basic ${apiKey}`,
-        'Accept': 'application/json',
+    const headers = {
+        Authorization: `Basic ${apiKey}`,
+        Accept: 'application/json',
         'Content-Type': 'application/json'
     };
 
     return {
-        headers: headers,
+        headers,
         mode: 'cors',
         cache: 'default'
     };
@@ -64,15 +64,15 @@ export function createApiKeyFromCredentials(username, password) {
 }
 
 export function buildUrlQuery(queryObject) {
-    let parts = [];
+    const parts = [];
 
-    for (var query in queryObject) {
-        if (queryObject.hasOwnProperty(query) && !_.isEmpty(queryObject[query])) {
+    Object.keys(queryObject).forEach(query => {
+        if (Object.prototype.hasOwnProperty.call(queryObject, query) && !_.isEmpty(queryObject[query])) {
             parts.push(encodeURIComponent(query) + '=' + encodeURIComponent(queryObject[query]));
         }
-    }
+    });
 
-    let queryString = parts.join('&');
+    const queryString = parts.join('&');
 
     return queryString ? '?' + queryString : '';
 }

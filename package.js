@@ -34,11 +34,9 @@ const depsExternal = Object
     .filter(name => !electronCfg.externals.includes(name))
     .map(toNodePath);
 
-
 const appName = argv.name || argv.n || pkg.productName;
 const shouldUseAsar = argv.asar || argv.a || false;
 const shouldBuildAll = argv.all || false;
-
 
 const DEFAULT_OPTS = {
     dir: './',
@@ -61,21 +59,20 @@ if (icon) {
 
 const version = argv.version || argv.v;
 if (version) {
-    DEFAULT_OPTS.version = version;
+    DEFAULT_OPTS.electronVersion = version;
     startPack();
 } else {
     // use the same version as the currently-installed electron-prebuilt
     exec('npm list electron --dev', (err, stdout) => {
         if (err) {
-            DEFAULT_OPTS.version = '1.2.0';
+            DEFAULT_OPTS.electronVersion = '1.2.0';
         } else {
-            DEFAULT_OPTS.version = stdout.split('electron@')[1].replace(/\s/g, '');
+            DEFAULT_OPTS.electronVersion = stdout.split('electron@')[1].replace(/\s/g, '');
         }
 
         startPack();
     });
 }
-
 
 /**
  * @desc Execute the webpack build process on given config object
@@ -83,16 +80,13 @@ if (version) {
  * @return {Promise}
  */
 function build(cfg) {
-    return new Promise((resolve, reject) => {
-        webpack(cfg, (err, stats) => {
-            if (err) {
-                return reject(err);
-            }
-            resolve(stats);
-        });
-    });
+    return new Promise((resolve, reject) => webpack(cfg, (err, stats) => {
+        if (err) {
+            return reject(err);
+        }
+        return resolve(stats);
+    }));
 }
-
 
 /** @desc Build, clear previous releases and pack new versions */
 async function startPack() {
@@ -127,7 +121,6 @@ async function startPack() {
     }
 }
 
-
 /**
  * @desc
  * @param {String} plat
@@ -158,13 +151,12 @@ function pack(plat, arch, cb) {
         platform: plat,
         arch,
         prune: true,
-        'app-version': pkg.version || DEFAULT_OPTS.version,
+        appVersion: pkg.version || DEFAULT_OPTS.electronVersion,
         out: `release/${plat}-${arch}`
     });
 
     packager(opts, cb);
 }
-
 
 /**
  * @desc Log out success / error of building for given platform and architecture
@@ -177,6 +169,6 @@ function log(plat, arch) {
         if (err) {
             return console.error(err);
         }
-        console.log(`${plat}-${arch} finished!`);
+        return console.log(`${plat}-${arch} finished!`);
     };
 }

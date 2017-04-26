@@ -1,11 +1,11 @@
-import {app, BrowserWindow, Menu, shell} from 'electron';
+import { app, BrowserWindow, Menu, shell } from 'electron';
 
 let menu;
 let template;
 let mainWindow = null;
 
 if (process.env.NODE_ENV === 'development') {
-    require('electron-debug')();
+    require('electron-debug')(); // eslint-disable-line
 }
 
 app.on('window-all-closed', () => {
@@ -14,7 +14,7 @@ app.on('window-all-closed', () => {
     }
 });
 
-const installExtensions = async() => {
+const installExtensions = async () => {
     if (process.env.NODE_ENV === 'development') {
         const installer = require('electron-devtools-installer'); // eslint-disable-line global-require
 
@@ -23,16 +23,16 @@ const installExtensions = async() => {
             'REDUX_DEVTOOLS'
         ];
         const forceDownload = !!process.env.UPGRADE_EXTENSIONS;
-        for (const name of extensions) {
+        for (const name of extensions) { // eslint-disable-line
             try {
-                await installer.default(installer[name], forceDownload);
-            } catch (e) {
-            } // eslint-disable-line
+                await installer.default(installer[name], forceDownload); // eslint-disable-line
+            } catch (e) { // eslint-disable-line
+            }
         }
     }
 };
 
-app.on('ready', async() => {
+app.on('ready', async () => {
     await installExtensions();
 
     mainWindow = new BrowserWindow({
@@ -58,7 +58,7 @@ app.on('ready', async() => {
     if (process.env.NODE_ENV === 'development') {
         mainWindow.openDevTools();
         mainWindow.webContents.on('context-menu', (e, props) => {
-            const {x, y} = props;
+            const { x, y } = props;
 
             Menu.buildFromTemplate([{
                 label: 'Inspect element',

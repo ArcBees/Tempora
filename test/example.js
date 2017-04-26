@@ -1,6 +1,5 @@
 /* eslint-disable func-names */
-import {expect} from "chai";
-
+import { expect } from 'chai';
 
 describe('description', () => {
     it('description', () => {
