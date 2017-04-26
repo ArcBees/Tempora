@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 
 import * as StorageService from '../../services/StorageService';
 
@@ -7,9 +7,10 @@ import './Login.scss';
 export default class Login extends Component {
     constructor(props) {
         super(props);
+
         this.state = {
             instanceURL: StorageService.getInstanceURL()
-        }
+        };
     }
 
     submitForm(event) {
@@ -22,19 +23,19 @@ export default class Login extends Component {
             return;
         }
 
-        this.props.onFormSubmit({instanceURL, username, password});
+        this.props.onFormSubmit({ instanceURL, username, password });
     }
 
     handleInstanceUrlChange(event) {
-        this.setState({instanceURL: event.target.value});
+        this.setState({ instanceURL: event.target.value });
     }
 
     handleUsernameChange(event) {
-        this.setState({username: event.target.value});
+        this.setState({ username: event.target.value });
     }
 
     handlePasswordChange(event) {
-        this.setState({password: event.target.value});
+        this.setState({ password: event.target.value });
     }
 
     render() {
@@ -51,17 +52,27 @@ export default class Login extends Component {
                 */}
                 <form onSubmit={e => this.submitForm(e)}>
                     <p>
-                        <input className="login__input" placeholder="http://instance-name.atlassian.net/"
-                                value={this.state.instanceURL}
-                                onChange={e => this.handleInstanceUrlChange(e)} />
+                        <input
+                            className="login__input"
+                            placeholder="http://instance-name.atlassian.net/"
+                            value={this.state.instanceURL}
+                            onChange={e => this.handleInstanceUrlChange(e)}
+                        />
                     </p>
                     <p>
-                        <input className="login__input" placeholder="Username"
-                               onChange={e => this.handleUsernameChange(e)} />
+                        <input
+                            className="login__input"
+                            placeholder="Username"
+                            onChange={e => this.handleUsernameChange(e)}
+                        />
                     </p>
                     <p>
-                        <input type="password" className="login__input" placeholder="Password"
-                               onChange={e => this.handlePasswordChange(e)} />
+                        <input
+                            type="password"
+                            className="login__input"
+                            placeholder="Password"
+                            onChange={e => this.handlePasswordChange(e)}
+                        />
                     </p>
                     <p>
                         <button className="login__btn">Log in</button>

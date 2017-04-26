@@ -1,3 +1,5 @@
-require('babel-register');
+import * as babelRegister from 'babel-register';
 
-module.exports = require('./webpack.config.development');
+babelRegister.default();
+
+export default from './webpack.config.development';

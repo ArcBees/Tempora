@@ -5,15 +5,12 @@
  */
 
 import webpack from 'webpack';
-import validate from 'webpack-validator';
 import merge from 'webpack-merge';
 import baseConfig from './webpack.config.base';
 
 const port = process.env.PORT || 3000;
 
-export default validate(merge(baseConfig, {
-    debug: true,
-
+export default merge(baseConfig, {
     devtool: 'cheap-module-eval-source-map',
 
     entry: [
@@ -27,21 +24,25 @@ export default validate(merge(baseConfig, {
     },
 
     module: {
-        loaders: [
+        rules: [
             {
                 test: /\.scss$/,
-                loaders: ["style", "css", "sass"]
+                loaders: ['style-loader', 'css-loader', 'sass-loader']
             }
         ]
     },
 
     plugins: [
+        new webpack.LoaderOptionsPlugin({
+            debug: true
+        }),
+
         // https://webpack.github.io/docs/hot-module-replacement-with-webpack.html
         new webpack.HotModuleReplacementPlugin(),
 
         // “If you are using the CLI, the webpack process will not exit with an error code by enabling this plugin.”
         // https://github.com/webpack/docs/wiki/list-of-plugins#noerrorsplugin
-        new webpack.NoErrorsPlugin(),
+        new webpack.NoEmitOnErrorsPlugin(),
 
         // NODE_ENV should be production so that modules do not perform certain development checks
         new webpack.DefinePlugin({
@@ -51,4 +52,4 @@ export default validate(merge(baseConfig, {
 
     // https://github.com/chentsulin/webpack-target-electron-renderer#how-this-module-works
     target: 'electron-renderer'
-}));
+});

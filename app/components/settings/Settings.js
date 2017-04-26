@@ -1,6 +1,7 @@
-import React, {Component} from 'react';
-import {Link} from 'react-router';
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import Select from 'react-select';
+import PropTypes from 'prop-types';
 
 import * as StorageService from '../../services/StorageService';
 
@@ -8,8 +9,8 @@ import './Settings.scss';
 
 export default class Settings extends Component {
     static contextTypes = {
-        settings: React.PropTypes.object,
-        user: React.PropTypes.object
+        settings: PropTypes.object,
+        user: PropTypes.object
     };
 
     constructor(props) {
@@ -29,7 +30,6 @@ export default class Settings extends Component {
     }
 
     render() {
-        const Select = require('react-select');
         const timeRoundOptions = [
             { value: 0, label: 'Never' },
             { value: 5, label: 'Nearest 5mn' },
@@ -51,7 +51,7 @@ export default class Settings extends Component {
                 <header className="page__header">
                     <h1 className="page__title">Settings</h1>
                     <Link to="/" className="page__close">
-                        <i className="fa fa-times" aria-hidden="true"></i>
+                        <i className="fa fa-times" aria-hidden="true" />
                     </Link>
                 </header>
                 <h2 className="page__subtitle">Profil</h2>
@@ -59,11 +59,11 @@ export default class Settings extends Component {
                 <div className="col col--middle col--2-3">
                     <img src={this.context.user.avatarUrls['48x48']} alt="" className="settings__avatar" />
                     <p>
-                        {this.context.user.displayName}<br/>
-                        <em>{this.context.user.emailAddress}</em><br/>
+                        {this.context.user.displayName}<br />
+                        <em>{this.context.user.emailAddress}</em><br />
                     </p>
                     <p>
-                        <a href="#" className="settings__link" onClick={() => this.logout()}>Logout</a>
+                        <a href="javascript:;" className="settings__link" onClick={() => this.logout()}>Logout</a>
                     </p>
                 </div>
                 <hr className="page__sep" />

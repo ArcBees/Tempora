@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import Modal from 'react-modal';
 
 import './Modal.scss';
@@ -8,22 +8,22 @@ export default class AppModal extends Component {
         super(props);
         this.state = {
             visible: false,
-            title: "",
-            content: ""
+            title: '',
+            content: ''
         };
 
         window.eventEmitter.addListener('requestModal', this.openModal.bind(this));
     }
 
     componentDidMount() {
-        Modal.setAppElement("#root");
+        Modal.setAppElement('#root');
     }
 
     openModal(title, content: 'undefined') {
         this.setState({
             visible: true,
-            title: title,
-            content: content
+            title,
+            content
         });
     }
 
